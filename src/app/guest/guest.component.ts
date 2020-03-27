@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-guest',
@@ -7,7 +8,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class GuestComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+  }
+
+  loginParent() {
+    this.router.navigate(
+      ['login-parent'],
+      {relativeTo: this.activatedRoute}
+    );
   }
 
   ngOnInit(): void {

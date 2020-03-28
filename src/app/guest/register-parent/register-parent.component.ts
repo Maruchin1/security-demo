@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {RegisterParentData} from '../../models/register-parent-data';
+import {HttpErrorResponse} from '@angular/common/http';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-parent',
@@ -14,11 +16,12 @@ export class RegisterParentComponent implements OnInit {
     email: ['', Validators.required],
     password: ['', Validators.required],
     passwordConfirm: ['', Validators.required]
-  });
+  }, {validators: this.passwordsTheSameValidator});
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private matSnackBar: MatSnackBar
   ) {
   }
 
@@ -34,6 +37,12 @@ export class RegisterParentComponent implements OnInit {
 
   }
 
+  private passwordsTheSameValidator(group: FormGroup): ValidationErrors | null {
+    const password = group.get('password').value;
+    const passwordConfirm = group.get('passwordConfirm').value;
+    return password === passwordConfirm ? null : {notSame: true};
+  }
+
   private getRegisterParentData(): RegisterParentData {
     return new RegisterParentData(
       this.form.get('name').value,
@@ -46,8 +55,23 @@ export class RegisterParentComponent implements OnInit {
     this.authService.refreshCurrUserRole();
   }
 
-  private handleError(error) {
+  private handleError(error: HttpErrorResponse) {
     console.log(error);
-    // todo zaimplementować obsługę błędów
+    let message;
+    if (error.error instanceof ErrorEvent) {
+      message = 'Wystąpił błąd: ' + error.error.message;
+    } else {
+      message = this.getErrorMessage(error.status);
+    }
+    this.matSnackBar.open(message, null, {duration: 2000});
+  }
+
+  private getErrorMessage(status: number): string {
+    switch (status) {
+      case 409:
+        return 'Uzytkownik o podanym adresie e-mail już istenieje';
+      default:
+        return 'Nieznany błąd';
+    }
   }
 }

@@ -16,14 +16,11 @@ export class LoginParentComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  private readonly errorsMessages: Map<number, string>;
-
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private matSnackBar: MatSnackBar
   ) {
-    this.errorsMessages = this.initErrorsMessages();
   }
 
   login() {
@@ -54,15 +51,19 @@ export class LoginParentComponent implements OnInit {
     if (error.error instanceof ErrorEvent) {
       message = 'Wystąpił błąd: ' + error.error.message;
     } else {
-      message = this.errorsMessages.get(error.status);
+      message = this.getErrorMessage(error.status);
     }
     this.matSnackBar.open(message, null, {duration: 2000});
   }
 
-  private initErrorsMessages(): Map<number, string> {
-    const map = new Map<number, string>();
-    map.set(404, 'Niepoprawny adres email');
-    map.set(422, 'Niepoprawne hasło');
-    return map;
+  private getErrorMessage(status: number): string {
+    switch (status) {
+      case 404:
+        return 'Niepoprawny adres email';
+      case 322:
+        return 'Nieporpawne hasło';
+      default:
+        return 'Nieznany błąd';
+    }
   }
 }

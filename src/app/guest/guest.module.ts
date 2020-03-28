@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { RegisterParentComponent } from './register-parent/register-parent.component';
 import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatRippleModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class GuestModule {

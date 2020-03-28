@@ -3,39 +3,48 @@
   <div class="row full-height align-items-center justify-content-center">
     <div class="col auth-container">
 
-      <div class="row">
-        <div class="col">
-          <h2>Zaloguj jako rodzic</h2>
+      <form [formGroup]="form" (ngSubmit)="login()">
+
+        <div class="row">
+          <div class="col">
+            <h2>Zaloguj jako rodzic</h2>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <mat-form-field
-          class="col"
-          appearance="outline">
-          <mat-label>E-mail</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-
-      <div class="row">
-        <mat-form-field
-          class="col"
-          appearance="outline">
-          <mat-label>Hasło</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-
-      <div style="height: 32px"></div>
-
-      <div class="row">
-        <div class="col">
-          <button mat-raised-button class="big-button" color="primary" (click)="login()">
-            Zaloguj
-          </button>
+        <div class="row">
+          <mat-form-field
+            class="col"
+            appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" formControlName="email" required>
+          </mat-form-field>
         </div>
-      </div>
+
+        <div class="row">
+          <mat-form-field
+            class="col"
+            appearance="outline">
+            <mat-label>Hasło</mat-label>
+            <input matInput type="password" formControlName="password" required>
+          </mat-form-field>
+        </div>
+
+        <div style="height: 32px"></div>
+
+        <div class="row">
+          <div class="col">
+            <button
+              mat-raised-button
+              class="big-button"
+              color="primary"
+              type="submit"
+              [disabled]="!form.valid">
+              Zaloguj
+            </button>
+          </div>
+        </div>
+
+      </form>
 
     </div>
   </div>

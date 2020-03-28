@@ -1,12 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {LoginParentData} from '../../models/login-parent-data';
-
-class LoginParentForm {
-  email = new FormControl(null, Validators.required);
-  password = new FormControl(null, Validators.required);
-}
 
 @Component({
   selector: 'app-login-parent',
@@ -14,39 +9,41 @@ class LoginParentForm {
   styleUrls: ['./login-parent.component.css']
 })
 export class LoginParentComponent implements OnInit {
-  form = new LoginParentForm();
+  form = this.fb.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required]
+  });
 
   constructor(
+    private fb: FormBuilder,
     private authService: AuthService
   ) {
   }
 
   login() {
-    const credentials = this.getParentCredentials();
-    if (credentials) {
-      this.authService.loginParent(credentials);
-    }
+    const data = this.getLoginParentData();
+    this.authService.loginParent(data).subscribe(
+      value => this.handleResult(),
+      error => this.handleError(error)
+    );
   }
 
   ngOnInit() {
-    this.initForm();
   }
 
-  private initForm() {
-    this.form = new LoginParentForm();
+  private getLoginParentData(): LoginParentData {
+    return new LoginParentData(
+      this.form.get('email').value,
+      this.form.get('password').value
+    );
   }
 
-  private getParentCredentials(): LoginParentData {
-    if (this.isFormValid()) {
-      return new LoginParentData(
-        this.form.email.value,
-        this.form.password.value
-      );
-    }
+  private handleResult() {
+    this.authService.refreshCurrUserRole();
   }
 
-  private isFormValid(): boolean {
-    return this.form.email.valid &&
-      this.form.password.valid;
+  private handleError(error) {
+    console.log(error);
+    // todo zaimplementować obsługę błędów
   }
 }

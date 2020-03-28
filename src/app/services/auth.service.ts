@@ -45,7 +45,11 @@ export class AuthService {
   }
 
   loginParent(data: LoginParentData): Observable<void> {
-    const request = this.httpClient.post<string>(ApiEndpoints.LOGIN_PARENT, data);
+    const request = this.httpClient.post(
+      ApiEndpoints.LOGIN_PARENT,
+      data,
+      {responseType: 'text'}
+    );
     return request.pipe(
       take(1),
       map(value => this.handleAuthToken(value))
@@ -61,6 +65,7 @@ export class AuthService {
   }
 
   private handleAuthToken(token: string) {
+    console.log('authToken: ' + token);
     localStorage.setItem(this.KEY_AUTH_TOKEN, token);
   }
 }

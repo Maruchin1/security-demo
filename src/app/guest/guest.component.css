@@ -1,0 +1,19 @@
+.home-container {
+  max-width: 700px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.home-option-button {
+  border-radius: 24px;
+  width: 100%;
+}
+
+.home-option-button-icon {
+  margin: 16px 8px 8px;
+}
+
+.home-option-button-text {
+  margin: 0 8px 16px;
+  white-space: pre-wrap;
+}

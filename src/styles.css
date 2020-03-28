@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.full-height {
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+.center-text {
+  text-align: center;
+}
+
+mat-icon.size-48 {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+}
+
+mat-icon.size-36 {
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+}
+
+mat-icon.size-24 {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+
+mat-icon.size-18 {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}

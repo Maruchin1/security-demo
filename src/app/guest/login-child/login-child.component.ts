@@ -1,19 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../services/auth.service';
 import {FormBuilder, Validators} from '@angular/forms';
-import {LoginParentData} from '../../models/login-parent-data';
-import {HttpErrorResponse} from '@angular/common/http';
+import {AuthService} from '../../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
-  selector: 'app-login-parent',
-  templateUrl: './login-parent.component.html',
-  styleUrls: ['./login-parent.component.css']
+  selector: 'app-login-child',
+  templateUrl: './login-child.component.html',
+  styleUrls: ['./login-child.component.css']
 })
-export class LoginParentComponent implements OnInit {
+export class LoginChildComponent implements OnInit {
   form = this.fb.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required]
+    connectionKey: ['', Validators.required]
   });
 
   constructor(
@@ -24,21 +22,14 @@ export class LoginParentComponent implements OnInit {
   }
 
   login() {
-    const data = this.getLoginParentData();
-    this.authService.loginParent(data).subscribe(
+    const key = this.form.get('connectionKey').value;
+    this.authService.loginChild(key).subscribe(
       value => this.handleResult(),
       error => this.handleError(error)
     );
   }
 
   ngOnInit() {
-  }
-
-  private getLoginParentData(): LoginParentData {
-    return new LoginParentData(
-      this.form.get('email').value,
-      this.form.get('password').value
-    );
   }
 
   private handleResult() {
@@ -59,9 +50,7 @@ export class LoginParentComponent implements OnInit {
   private getErrorMessage(status: number): string {
     switch (status) {
       case 404:
-        return 'Niepoprawny adres email';
-      case 422:
-        return 'Nieporpawne hasło';
+        return 'Niepoprawny kod połączenia';
       default:
         return 'Nieznany błąd';
     }

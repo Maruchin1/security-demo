@@ -13,10 +13,11 @@ import { RegisterParentComponent } from './register-parent/register-parent.compo
 import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoginChildComponent } from './login-child/login-child.component';
 
 
 @NgModule({
-  declarations: [GuestComponent, LoginParentComponent, RegisterParentComponent],
+  declarations: [GuestComponent, LoginParentComponent, RegisterParentComponent, LoginChildComponent],
   imports: [
     CommonModule,
     GuestRoutingModule,

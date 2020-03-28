@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FormControl, Validators} from '@angular/forms';
-import {ParentCredentials} from '../../models/parent-credentials';
+import {LoginParentData} from '../../models/login-parent-data';
 
 class LoginParentForm {
   email = new FormControl(null, Validators.required);
@@ -36,9 +36,9 @@ export class LoginParentComponent implements OnInit {
     this.form = new LoginParentForm();
   }
 
-  private getParentCredentials(): ParentCredentials {
+  private getParentCredentials(): LoginParentData {
     if (this.isFormValid()) {
-      return new ParentCredentials(
+      return new LoginParentData(
         this.form.email.value,
         this.form.password.value
       );

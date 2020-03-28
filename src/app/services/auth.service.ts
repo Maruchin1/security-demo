@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {UserRole} from '../models/user-role';
 import {Observable, of} from 'rxjs';
-import {ParentCredentials} from '../models/parent-credentials';
+import {LoginParentData} from '../models/login-parent-data';
 import {HttpClient} from '@angular/common/http';
 import {ApiEndpoints} from './ApiEndpoints';
+import {RegisterParentData} from '../models/register-parent-data';
 
 @Injectable({
   providedIn: 'root'
@@ -21,22 +22,28 @@ export class AuthService {
     return of(UserRole.GUEST);
   }
 
-  registerParent(credential: ParentCredentials) {
-    return of();
+  registerParent(data: RegisterParentData) {
+    const request = this.httpClient.post(ApiEndpoints.REGISTER_PARENT, data);
+    request.subscribe(
+      value => this.handleAuthResult(value)
+    );
   }
 
-  loginParent(credentials: ParentCredentials) {
-    const request = this.httpClient.post(ApiEndpoints.LOGIN_CHILD, credentials);
-    return request.subscribe(
-      value => this.handleLoginResult(value)
+  loginParent(data: LoginParentData) {
+    const request = this.httpClient.post(ApiEndpoints.LOGIN_PARENT, data);
+    request.subscribe(
+      value => this.handleAuthResult(value)
     );
   }
 
   loginChild(connectionKey: string) {
-    return of();
+    const request = this.httpClient.post(ApiEndpoints.LOGIN_CHILD, connectionKey);
+    request.subscribe(
+      value => this.handleAuthResult(value)
+    );
   }
 
-  private handleLoginResult(result) {
+  private handleAuthResult(result) {
     const authToken = result as string;
     localStorage.setItem(this.KEY_AUTH_TOKEN, authToken);
   }

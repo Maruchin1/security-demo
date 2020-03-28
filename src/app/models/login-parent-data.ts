@@ -1,4 +1,4 @@
-export class ParentCredentials {
+export class LoginParentData {
   email: string;
   password: string;
 

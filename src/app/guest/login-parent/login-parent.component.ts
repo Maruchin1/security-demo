@@ -14,7 +14,7 @@ class LoginParentForm {
   styleUrls: ['./login-parent.component.css']
 })
 export class LoginParentComponent implements OnInit {
-  form: LoginParentForm;
+  form = new LoginParentForm();
 
   constructor(
     private authService: AuthService

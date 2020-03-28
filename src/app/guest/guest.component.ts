@@ -14,14 +14,25 @@ export class GuestComponent implements OnInit {
   ) {
   }
 
+  registerParent() {
+    this.navigate('register-parent');
+  }
+
   loginParent() {
-    this.router.navigate(
-      ['login-parent'],
-      {relativeTo: this.activatedRoute}
-    );
+    this.navigate('login-parent');
+  }
+
+  loginChild() {
+    this.navigate('login-child');
   }
 
   ngOnInit(): void {
   }
 
+  private navigate(path: string) {
+    this.router.navigate(
+      [path],
+      {relativeTo: this.activatedRoute}
+    );
+  }
 }

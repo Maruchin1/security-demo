@@ -6,27 +6,42 @@
       <div class="row">
 
         <div class="col-4">
-          <mat-card class="home-card" matRipple>
-            <div class="home-card-content">
-              <h1 class="center-text">Nowe konto rodzica</h1>
-            </div>
-          </mat-card>
+          <button
+            class="home-option-button"
+            mat-raised-button
+            color="primary"
+            (click)="registerParent()">
+            <mat-icon class="size-48 home-option-button-icon">person_add</mat-icon>
+            <h2 class="home-option-button-text">
+              Nowe konto rodzica
+            </h2>
+          </button>
         </div>
 
         <div class="col-4">
-          <mat-card class="home-card" matRipple (click)="loginParent()">
-            <div class="home-card-content">
-              <h1 class="center-text">Zaloguj jako rodzic</h1>
-            </div>
-          </mat-card>
+          <button
+            class="home-option-button"
+            mat-raised-button
+            color="primary"
+            (click)="loginParent()">
+            <mat-icon class="size-48 home-option-button-icon">person</mat-icon>
+            <h2 class="home-option-button-text">
+              Zaloguj jako rodzic
+            </h2>
+          </button>
         </div>
 
         <div class="col-4">
-          <mat-card class="home-card" matRipple>
-            <div class="home-card-content">
-              <h1 class="center-text">Zaloguj jako dziecko</h1>
-            </div>
-          </mat-card>
+          <button
+            class="home-option-button"
+            mat-raised-button
+            color="primary"
+            (click)="loginChild()">
+            <mat-icon class="size-48 home-option-button-icon">face</mat-icon>
+            <h2 class="home-option-button-text">
+              Zaloguj jako dziecko
+            </h2>
+          </button>
         </div>
 
       </div>

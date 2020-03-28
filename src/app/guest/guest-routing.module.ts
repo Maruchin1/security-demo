@@ -3,10 +3,12 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {GuestComponent} from './guest.component';
 import {LoginParentComponent} from './login-parent/login-parent.component';
+import {RegisterParentComponent} from './register-parent/register-parent.component';
 
 const routes: Routes = [
   {path: '', component: GuestComponent},
-  {path: 'login-parent', component: LoginParentComponent},
+  {path: 'register-parent', component: RegisterParentComponent},
+  {path: 'login-parent', component: LoginParentComponent}
 ];
 
 @NgModule({

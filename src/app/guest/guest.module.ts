@@ -9,10 +9,13 @@ import {LoginParentComponent} from './login-parent/login-parent.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatRippleModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
+import { RegisterParentComponent } from './register-parent/register-parent.component';
+import {MatIconModule} from '@angular/material/icon';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [GuestComponent, LoginParentComponent],
+  declarations: [GuestComponent, LoginParentComponent, RegisterParentComponent],
   imports: [
     CommonModule,
     GuestRoutingModule,
@@ -20,7 +23,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatCardModule,
     MatRippleModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    ReactiveFormsModule
   ]
 })
 export class GuestModule {

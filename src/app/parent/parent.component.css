@@ -1,0 +1,47 @@
+.parent-info{
+    border-radius: 25px;
+    background-color: blueviolet;
+    margin: 5% 20%;
+    padding: 5%;
+    font-family:  Roboto, "Helvetica Neue", sans-serif;
+    color: white;
+}
+
+.parent-data{
+font-weight: 500;
+font-size: 18px;
+}
+
+.role{
+
+}
+
+.list-of-things{
+    margin: 2% 20% 5% 20%;
+}
+
+.child-info{
+ background-color: aliceblue;
+ border-top: 1px dashed darkslategray;
+ padding: 2% 10%;
+ position: relative;
+ color: darkslategray;
+ font-size: 20px;
+ font-family: 'Roboto, "Helvetica Neue", sans-serif';
+}
+
+.delete-child{
+    margin-right: 100px;
+}
+
+.child-add-button{
+    width: 100%;
+}
+
+.med-info{
+    background-color: aliceblue;
+    border-top: 1px dashed darkslategray;
+    padding: 2% 10%;
+    color: darkslategray;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

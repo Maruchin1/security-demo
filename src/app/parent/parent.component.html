@@ -1,1 +1,42 @@
-<p>parent works!</p>
+<div class=parent-panel>
+    <div class=parent-info *ngIf=parent>
+        <div class=parent-data>
+            {{parent.name}} ({{parent.email}}),
+        </div>
+        <div class=role>
+            Jako rodzic możesz przydzielać leki swoim dzieciom.
+        </div>
+    </div>
+    <div class=list-of-things>
+        <div class=child-info *ngFor='let child of childs'>
+            <span class=delete-child>
+                <mat-icon (click)="deleteChild(child.childId)" class="size-16 home-option-button-icon">delete_sweep</mat-icon>
+            </span>
+            {{child.name}}        
+        </div>
+        <button
+            class="child-add-button"
+            mat-raised-button
+            color="primary"
+            (click)="addChild()">
+            <mat-icon class="size-24 child-add-button-icon">person_add</mat-icon>
+              Dodaj dziecko
+          </button>
+    </div>
+    <div class=list-of-things>            
+        <div class=med-info *ngFor='let med of medicines'>
+            <span class=delete-child>
+                <mat-icon (click)="deleteMedicine(med.medicineId)" class="size-16 home-option-button-icon">delete_sweep</mat-icon>
+            </span>
+            {{med.name}}        
+        </div>
+        <button
+        class="child-add-button"
+        mat-raised-button
+        color="primary"
+        (click)="addMedicine()">
+        <mat-icon class="size-24 child-add-button-icon">playlist_add</mat-icon>
+          Dodaj produkt medyczny
+      </button>
+    </div> 
+</div>

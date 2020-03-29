@@ -33,7 +33,7 @@ export class LoginChildComponent implements OnInit {
   }
 
   private handleResult() {
-    this.authService.refreshCurrUserRole();
+    this.authService.refreshCurrUserRole().subscribe();
   }
 
   private handleError(error: HttpErrorResponse) {

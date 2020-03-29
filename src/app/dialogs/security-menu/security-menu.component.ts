@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SecurityService} from '../services/security.service';
+import {SecurityService} from '../../services/security.service';
 
 @Component({
   selector: 'app-security-menu',
@@ -12,7 +12,7 @@ export class SecurityMenuComponent implements OnInit {
   secureCsrfToken = false;
 
   constructor(
-    private securityService: SecurityService
+    public securityService: SecurityService
   ) {
   }
 

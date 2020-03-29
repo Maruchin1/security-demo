@@ -8,14 +8,16 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {SecurityMenuComponent} from './security-menu/security-menu.component';
+import {SecurityMenuComponent} from './dialogs/security-menu/security-menu.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SecurityMenuComponent
+    SecurityMenuComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSlideToggleModule
   ],
   entryComponents: [
-    SecurityMenuComponent
+    SecurityMenuComponent,
+    ConfirmComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

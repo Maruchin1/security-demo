@@ -72,7 +72,13 @@ export class AuthService {
     );
   }
 
+  logoutCurrUser(): Observable<void> {
+    localStorage.removeItem(this.KEY_AUTH_TOKEN);
+    return this.refreshCurrUserRole();
+  }
+
   private handleUserRole(roleString: string) {
+    console.log('userRole: ' + roleString);
     switch (roleString) {
       case 'PARENT':
         this.currUserRole.next(UserRole.PARENT);

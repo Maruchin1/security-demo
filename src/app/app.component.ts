@@ -3,7 +3,8 @@ import {AuthService} from './services/auth.service';
 import {UserRole} from './models/user-role';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {SecurityMenuComponent} from './security-menu/security-menu.component';
+import {SecurityMenuComponent} from './dialogs/security-menu/security-menu.component';
+import {ConfirmComponent, ConfirmData} from './dialogs/confirm/confirm.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,17 @@ export class AppComponent implements OnInit {
 
   openSecurityMenu() {
     const dialogRef = this.matDialog.open(SecurityMenuComponent);
+  }
+
+  logOut() {
+    const confirmData: ConfirmData = {
+      title: 'Wylogowanie z aplikacji',
+      message: 'Czy na pewno chcesz się wylogować z aplikacji?'
+    };
+    const dialogRef = this.matDialog.open(ConfirmComponent, {data: confirmData});
+    dialogRef.beforeClosed().subscribe(
+      value => this.handleLogoutConfirm(value)
+    );
   }
 
   ngOnInit() {
@@ -43,5 +55,11 @@ export class AppComponent implements OnInit {
       moduleRoute = 'guest';
     }
     this.router.navigate([moduleRoute]);
+  }
+
+  private handleLogoutConfirm(confirm: boolean) {
+    if (confirm) {
+      this.authService.logoutCurrUser().subscribe();
+    }
   }
 }

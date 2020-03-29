@@ -40,7 +40,17 @@ export class AuthService {
   }
 
   getCurrUserRole(): Observable<UserRole> {
-    return this.currUserRole.asObservable();
+    // return this.currUserRole.asObservable();
+    return of(UserRole.CHILD);
+  }
+
+  getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem(this.KEY_AUTH_TOKEN);
+    if (token) {
+      return new HttpHeaders({
+        Authorization: token
+      });
+    }
   }
 
   registerParent(data: RegisterParentData): Observable<void> {

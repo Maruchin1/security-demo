@@ -1,1 +1,54 @@
-<p>child works!</p>
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col sized-container">
+
+      <div class="row header">
+        <div class="col-auto">
+          <mat-icon class="size-48">face</mat-icon>
+        </div>
+
+        <div class="col">
+          <h1 class="mat-display-2 header-text">
+            {{loggedChild.name}}
+          </h1>
+        </div>
+
+        <div class="col-auto justify-content-end">
+
+          <div class="row">
+            <div class="col-auto parent-icon">
+              <mat-icon>person</mat-icon>
+            </div>
+            <div class="col">
+              <h3>Rodzic {{loggedChild.parent.name}}</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-auto parent-icon">
+              <mat-icon>email</mat-icon>
+            </div>
+            <div class="col">
+              <h3>{{loggedChild.parent.email}}</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+
+      <div class="row items-container">
+        <div class="col-12 item" *ngFor="let medicine of medicines">
+          {{medicine.name}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

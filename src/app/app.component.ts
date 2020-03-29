@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {UserRole} from './models/user-role';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {SecurityMenuComponent} from './security-menu/security-menu.component';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'security-demo';
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private matDialog: MatDialog
   ) {
+  }
+
+  openSecurityMenu() {
+    const dialogRef = this.matDialog.open(SecurityMenuComponent);
   }
 
   ngOnInit() {

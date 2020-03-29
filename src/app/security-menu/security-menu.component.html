@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Opcje bezpieczeństwa</h2>
+
+<mat-dialog-content>
+  <div class="container">
+
+    <div class="row">
+      <div class="col info">
+        <p>W tym miejscu możesz włączać i wyłączać poszczególne zabezpieczenia aplikacji.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col option">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="secureXFrameOptions"
+          (change)="securityService.setSecureXFrameOptions($event.checked)">
+          X-Frame-Options
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col option">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="secureSqlInjection"
+          (change)="securityService.setSecureSqlInjection($event.checked)">
+          SQL Injection
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col option">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="secureCsrfToken"
+          (change)="securityService.setSecureCsrfToken($event.checked)">
+          CSRF Toke
+          n</mat-slide-toggle>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-raised-button color="primary" mat-dialog-close>Zamknij opcje</button>
+</mat-dialog-actions>

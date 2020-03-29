@@ -4,6 +4,10 @@
   margin-right: 16px;
 }
 
+.home-options-container {
+  padding-bottom: 82px;
+}
+
 .home-option-button {
   border-radius: 24px;
   width: 100%;

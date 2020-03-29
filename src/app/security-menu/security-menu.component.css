@@ -1,0 +1,13 @@
+.info {
+  padding: 0 0 16px;
+  max-width: 400px;
+}
+
+.option {
+  padding: 16px 0 16px;
+}
+
+.actions {
+  justify-content: flex-end;
+  padding-bottom: 16px;
+}

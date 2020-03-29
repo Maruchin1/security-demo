@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserRole} from '../models/user-role';
 import {Observable, of, Subject} from 'rxjs';
 import {LoginParentData} from '../models/login-parent-data';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiEndpoints} from './ApiEndpoints';
 import {RegisterParentData} from '../models/register-parent-data';
 import {map, take} from 'rxjs/operators';
@@ -20,11 +20,19 @@ export class AuthService {
     this.currUserRole.next(UserRole.GUEST);
   }
 
-  refreshCurrUserRole() {
+  refreshCurrUserRole(): Observable<void> {
     const authToken = localStorage.getItem(this.KEY_AUTH_TOKEN);
-    // todo request do serwera, który zwróci rolę
-    const newRole = UserRole.GUEST;
-    this.currUserRole.next(newRole);
+    const requestHeaders = new HttpHeaders({
+      Authorization: authToken
+    });
+    const request = this.httpClient.get(
+      ApiEndpoints.USER_ROLE,
+      {headers: requestHeaders, responseType: 'text'}
+    );
+    return request.pipe(
+      take(1),
+      map(value => this.handleUserRole(value))
+    );
   }
 
   getCurrUserRole(): Observable<UserRole> {
@@ -62,6 +70,20 @@ export class AuthService {
       take(1),
       map(value => this.handleAuthToken(value))
     );
+  }
+
+  private handleUserRole(roleString: string) {
+    switch (roleString) {
+      case 'PARENT':
+        this.currUserRole.next(UserRole.PARENT);
+        break;
+      case 'CHILD':
+        this.currUserRole.next(UserRole.CHILD);
+        break;
+      case 'GUEST':
+        this.currUserRole.next(UserRole.GUEST);
+        break;
+    }
   }
 
   private handleAuthToken(token: string) {

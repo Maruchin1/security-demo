@@ -36,3 +36,9 @@ mat-icon.size-18 {
   height: 18px;
   font-size: 18px;
 }
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

@@ -40,6 +40,70 @@ export class ChildService {
         expireDate: new Date(2021, 3, 21),
         packageSize: 100,
         currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
+      },
+      {
+        medicineId: 1,
+        name: 'Hitaxa',
+        unit: 'tabletki',
+        expireDate: new Date(2021, 3, 21),
+        packageSize: 100,
+        currState: 20
       }
     ];
     return of(mock);

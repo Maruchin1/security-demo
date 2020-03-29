@@ -44,8 +44,8 @@
       </div>
 
       <div class="row items-container">
-        <div class="col-12 item" *ngFor="let medicine of medicines">
-          {{medicine.name}}
+        <div class="col-6 item" *ngFor="let medicine of medicines">
+          <app-medicine-item [medicine]="medicine"></app-medicine-item>
         </div>
       </div>
 

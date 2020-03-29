@@ -3,4 +3,5 @@ export class ApiEndpoints {
   static readonly REGISTER_PARENT = ApiEndpoints.BASE_URL + '/parents/register';
   static readonly LOGIN_PARENT = ApiEndpoints.BASE_URL + '/parents/login';
   static readonly LOGIN_CHILD = ApiEndpoints.BASE_URL + '/children/login';
+  static readonly USER_ROLE = ApiEndpoints.BASE_URL + '/user/role';
 }

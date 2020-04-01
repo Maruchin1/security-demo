@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { Parent } from '../models/parent';
 import { Child } from '../models/child';
 import { Medicine } from '../models/medicine';
+import { ParentService } from '../services/parent.service';
 
 @Component({
   selector: 'app-parent',
@@ -13,12 +14,17 @@ export class ParentComponent implements OnInit {
   childs: Child[] = []
   medicines: Medicine[] = []
 
-  constructor() {
+  constructor(private parentService: ParentService) {
   }
 
   ngOnInit(): void {
-    //toDO: get some data from backend, below mocked
-    this.parent = {parentId: 11, name: "Antoni", email: "a@b.cd"}
+    this.parentService.getParentData().then( p => this.parent = p)
+    .catch(err => console.error(err))
+
+    this.parentService.getParentChilds().then( ch => this.childs = ch)
+    this.parentService.getParentMedicines().then( m => this.medicines = m)
+
+    //toDO: mocked data, póki nie ma formularzy dodawania dzieci i leków
     this.childs.push({childId: 1, name: "Adaś", connectionKey: "UZUMYMW"})
     this.childs.push({childId: 2, name: "Małgosia", connectionKey: "AEZAKMI"})
     this.childs.push({childId: 3, name: "Janek", connectionKey: "44EERQQS"})
@@ -40,19 +46,25 @@ export class ParentComponent implements OnInit {
   }
 
   deleteMedicine(medicineId: number){
-    let i = this.medicines.findIndex(c => c.medicineId === medicineId)
-    this.medicines.splice(i,1);
-    //toDO: usunac z bazy
-  }
+    this.parentService.removeMedicine(medicineId).then(() => {
+      let i = this.medicines.findIndex(c => c.medicineId === medicineId)
+      this.medicines.splice(i,1);
+    }).catch(err => {
+      alert("Nie można usunąć leku! (Może jest przypisany do dziecka).")
+    });
+    }
 
   addChild(){
     //toDO: przekierowanie do formularza dodawania dzecka
   }
 
   deleteChild(childId: number){
-    let i = this.childs.findIndex(c => c.childId === childId)
-    this.childs.splice(i,1);
-    //toDO: usunac z bazy
+    this.parentService.removeChild(childId).then(() => {
+      let i = this.childs.findIndex(c => c.childId === childId)
+      this.childs.splice(i,1);
+    }).catch(err => {
+      alert("Nie można usunąć dziecka!")
+    })
   }
 
 }

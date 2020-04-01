@@ -99,4 +99,8 @@ export class AuthService {
     console.log('authToken: ' + token);
     localStorage.setItem(this.KEY_AUTH_TOKEN, token);
   }
+
+  getAuthToken(): string {
+    return localStorage.getItem(this.KEY_AUTH_TOKEN);
+  }
 }

@@ -23,23 +23,7 @@ export class ParentComponent implements OnInit {
 
     this.parentService.getParentChilds().then( ch => this.childs = ch)
     this.parentService.getParentMedicines().then( m => this.medicines = m)
-
-    //toDO: mocked data, póki nie ma formularzy dodawania dzieci i leków
-    this.childs.push({childId: 1, name: "Adaś", connectionKey: "UZUMYMW"})
-    this.childs.push({childId: 2, name: "Małgosia", connectionKey: "AEZAKMI"})
-    this.childs.push({childId: 3, name: "Janek", connectionKey: "44EERQQS"})
-    this.medicines.push({  medicineId: 1,
-      name: "alfa1",
-      unit: "100j",
-      expireDate: new Date("18-10-2020"),
-      packageSize: 200,
-      currState: 1})
-      this.medicines.push({  medicineId: 2,
-        name: "omega 7 Premium super fast",
-        unit: "100j",
-        expireDate: new Date("18-05-2020"),
-        packageSize: 100,
-        currState: 1})  }
+  }
 
   addMedicine(){
     //toDO: przekierowanie do formularza dodawania leku
@@ -49,14 +33,18 @@ export class ParentComponent implements OnInit {
     this.parentService.removeMedicine(medicineId).then(() => {
       let i = this.medicines.findIndex(c => c.medicineId === medicineId)
       this.medicines.splice(i,1);
-    }).catch(err => {
+    }).catch(err => { console.log(err)
       alert("Nie można usunąć leku! (Może jest przypisany do dziecka).")
     });
     }
 
-  addChild(){
-    //toDO: przekierowanie do formularza dodawania dzecka
-  }
+    addChild(){
+      //toDO: przekierowanie do formularza dodawania dzecka
+    }
+
+    addMedicinesToChild(childId: number){
+      //toDO: przekierowanie do widoku z przypisywaniem leków
+    }
 
   deleteChild(childId: number){
     this.parentService.removeChild(childId).then(() => {

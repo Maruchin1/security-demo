@@ -12,6 +12,9 @@
             <span class=delete-child>
                 <mat-icon (click)="deleteChild(child.childId)" class="size-16 home-option-button-icon">delete_sweep</mat-icon>
             </span>
+            <span class=describe-medicine-child>
+                <mat-icon (click)='addMedicinesToChild(child.childId)' class="size-16 home-option-button-icon" alt="Przypisz leki dla dziecka">description</mat-icon>
+            </span>
             {{child.name}}        
         </div>
         <button
@@ -25,7 +28,7 @@
     </div>
     <div class=list-of-things>            
         <div class=med-info *ngFor='let med of medicines'>
-            <span class=delete-child>
+            <span class=delete-med>
                 <mat-icon (click)="deleteMedicine(med.medicineId)" class="size-16 home-option-button-icon">delete_sweep</mat-icon>
             </span>
             {{med.name}}        

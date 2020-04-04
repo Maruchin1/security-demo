@@ -16,6 +16,10 @@ font-size: 18px;
 
 }
 
+.describe-medicine-child{
+    margin-right: 30px;
+}
+
 .list-of-things{
     margin: 2% 20% 5% 20%;
 }
@@ -31,7 +35,7 @@ font-size: 18px;
 }
 
 .delete-child{
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 .child-add-button{
@@ -43,5 +47,10 @@ font-size: 18px;
     border-top: 1px dashed darkslategray;
     padding: 2% 10%;
     color: darkslategray;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 20px;
+    font-family: 'Roboto, "Helvetica Neue", sans-serif';
+}
+
+.delete-med{
+    margin-right: 30px;
 }

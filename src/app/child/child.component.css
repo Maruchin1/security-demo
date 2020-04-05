@@ -1,0 +1,23 @@
+.sized-container {
+  max-width: 700px;
+}
+
+.header {
+  padding-top: 32px;
+}
+
+.header-text {
+  margin: 0;
+}
+
+.parent-icon {
+  padding: 0;
+}
+
+.items-container {
+  padding: 16px 8px 16px;
+}
+
+.item {
+  padding: 8px;
+}

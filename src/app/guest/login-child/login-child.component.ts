@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {HttpErrorResponse} from '@angular/common/http';
+import {LoginChildData} from '../../models/login-child-data';
 
 @Component({
   selector: 'app-login-child',
@@ -23,7 +24,8 @@ export class LoginChildComponent implements OnInit {
 
   login() {
     const key = this.form.get('connectionKey').value;
-    this.authService.loginChild(key).subscribe(
+    const data = new LoginChildData(key);
+    this.authService.loginChild(data).subscribe(
       value => this.handleResult(),
       error => this.handleError(error)
     );

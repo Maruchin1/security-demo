@@ -1,5 +1,5 @@
 export class ApiEndpoints {
-  private static readonly BASE_URL = 'http://localhost:8080';
+  private static readonly BASE_URL = 'https://medihelper-api.herokuapp.com';
   static readonly REGISTER_PARENT = ApiEndpoints.BASE_URL + '/users/register-parent';
   static readonly LOGIN_PARENT = ApiEndpoints.BASE_URL + '/users/login-parent';
   static readonly LOGIN_CHILD = ApiEndpoints.BASE_URL + '/users/login-child';

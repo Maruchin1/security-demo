@@ -6,6 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiEndpoints} from './ApiEndpoints';
 import {RegisterParentData} from '../models/register-parent-data';
 import {map, take} from 'rxjs/operators';
+import {LoginChildData} from '../models/login-child-data';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +41,7 @@ export class AuthService {
   }
 
   getCurrUserRole(): Observable<UserRole> {
-    // return this.currUserRole.asObservable();
-    return of(UserRole.CHILD);
+    return this.currUserRole.asObservable();
   }
 
   getAuthHeaders(): HttpHeaders {
@@ -55,8 +55,7 @@ export class AuthService {
 
   registerParent(data: RegisterParentData): Observable<void> {
     const request = this.httpClient.post(
-      ApiEndpoints.REGISTER_PARENT,
-      data,
+      ApiEndpoints.REGISTER_PARENT, data,
       {responseType: 'text'}
     );
     return request.pipe(
@@ -67,8 +66,7 @@ export class AuthService {
 
   loginParent(data: LoginParentData): Observable<void> {
     const request = this.httpClient.post(
-      ApiEndpoints.LOGIN_PARENT,
-      data,
+      ApiEndpoints.LOGIN_PARENT, data,
       {responseType: 'text'}
     );
     return request.pipe(
@@ -77,8 +75,11 @@ export class AuthService {
     );
   }
 
-  loginChild(connectionKey: string): Observable<void> {
-    const request = this.httpClient.post<string>(ApiEndpoints.LOGIN_CHILD, connectionKey);
+  loginChild(data: LoginChildData): Observable<void> {
+    const request = this.httpClient.post(
+      ApiEndpoints.LOGIN_CHILD, data,
+      {responseType: 'text'}
+    );
     return request.pipe(
       take(1),
       map(value => this.handleAuthToken(value))

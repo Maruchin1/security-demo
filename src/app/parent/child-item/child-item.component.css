@@ -1,0 +1,20 @@
+.icon-col {
+  padding: 0;
+}
+
+.data-text {
+  margin: 0;
+}
+
+.data-col {
+  padding: 2px 0 0;
+}
+
+.rounded-card {
+  border-radius: 16px;
+  border: 2px solid grey;
+}
+
+.content {
+  padding-top: 16px;
+}

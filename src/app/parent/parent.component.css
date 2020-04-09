@@ -1,3 +1,30 @@
+.sized-container {
+  max-width: 700px;
+}
+
+.header {
+  padding-top: 32px;
+  padding-bottom: 16px;
+}
+
+.header-text {
+  margin: 0;
+}
+
+.email-icon {
+  padding: 0;
+}
+
+.items-container {
+  padding: 16px 8px 16px;
+}
+
+.item {
+  padding: 8px;
+}
+
+
+
 .parent-info{
     border-radius: 25px;
     background-color: blueviolet;

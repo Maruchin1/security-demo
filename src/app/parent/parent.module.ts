@@ -9,10 +9,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { AddChildFormComponent } from './add-child-form/add-child-form.component';
 import { FormsModule } from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
+import { ChildItemComponent } from './child-item/child-item.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
-  declarations: [ParentComponent, AddChildFormComponent],
+  declarations: [ParentComponent, AddChildFormComponent, ChildItemComponent],
   imports: [
     CommonModule,
     ParentRoutingModule,
@@ -20,7 +23,9 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatDialogModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule,
+    MatCardModule
   ]
 })
 export class ParentModule {

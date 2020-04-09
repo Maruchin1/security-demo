@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Parent } from '../models/parent';
-import { Child } from '../models/child';
-import { Medicine } from '../models/medicine';
-import { ParentService } from '../services/parent.service';
-import { AddChildFormComponent } from './add-child-form/add-child-form.component';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, OnInit} from '@angular/core';
+import {Parent} from '../models/parent';
+import {Child} from '../models/child';
+import {Medicine} from '../models/medicine';
+import {ParentService} from '../services/parent.service';
+import {AddChildFormComponent} from './add-child-form/add-child-form.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-parent',
@@ -12,36 +12,36 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./parent.component.css']
 })
 export class ParentComponent implements OnInit {
-  parent: Parent
-  childs: Child[] = []
-  medicines: Medicine[] = []
+  parent: Parent;
+  children: Child[] = [];
+  medicines: Medicine[] = [];
 
   constructor(private parentService: ParentService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.parentService.getParentData().then(p => this.parent = p)
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
 
     this.refreshData();
   }
 
-  refreshData(){
-    this.parentService.getParentChilds().then(ch => this.childs = ch)
-    this.parentService.getParentMedicines().then(m => this.medicines = m)
+  refreshData() {
+    this.parentService.getParentChilds().then(ch => this.children = ch);
+    this.parentService.getParentMedicines().then(m => this.medicines = m);
   }
 
   addMedicine() {
-    //toDO: przekierowanie do formularza dodawania leku
+    // toDO: przekierowanie do formularza dodawania leku
   }
 
   deleteMedicine(medicineId: number) {
     this.parentService.removeMedicine(medicineId).then(() => {
-      let i = this.medicines.findIndex(c => c.medicineId === medicineId)
+      const i = this.medicines.findIndex(c => c.medicineId === medicineId);
       this.medicines.splice(i, 1);
     }).catch(err => {
-      console.log(err)
-      alert("Nie można usunąć leku! (Może jest przypisany do dziecka).")
+      console.log(err);
+      alert('Nie można usunąć leku! (Może jest przypisany do dziecka).');
     });
   }
 
@@ -50,21 +50,21 @@ export class ParentComponent implements OnInit {
       width: '250px'
     });
     dialogRef.afterClosed().subscribe(childName => {
-      this.parentService.addChild(childName).then(() => this.refreshData())
+      this.parentService.addChild(childName).then(() => this.refreshData());
     });
   }
 
   addMedicinesToChild(childId: number) {
-    //toDO: przekierowanie do widoku z przypisywaniem leków
+    // toDO: przekierowanie do widoku z przypisywaniem leków
   }
 
   deleteChild(childId: number) {
     this.parentService.removeChild(childId).then(() => {
-      let i = this.childs.findIndex(c => c.childId === childId)
-      this.childs.splice(i, 1);
+      const i = this.children.findIndex(c => c.childId === childId);
+      this.children.splice(i, 1);
     }).catch(err => {
-      alert("Nie można usunąć dziecka!")
-    })
+      alert('Nie można usunąć dziecka!');
+    });
   }
 
 }

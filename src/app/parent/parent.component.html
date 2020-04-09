@@ -1,45 +1,74 @@
-<div class=parent-panel>
-    <div class=parent-info *ngIf=parent>
-        <div class=parent-data>
-            {{parent.name}} ({{parent.email}}),
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col sized-container">
+
+      <div class="row header">
+        <div class="col-auto">
+          <mat-icon class="size-48">person</mat-icon>
         </div>
-        <div class=role>
-            Jako rodzic możesz przydzielać leki swoim dzieciom.
+
+        <div class="col">
+          <h1 class="mat-display-2 header-text">
+            {{parent?.name}}
+          </h1>
         </div>
-    </div>
-    <div class=list-of-things>
-        <div class=child-info *ngFor='let child of childs'>
-            <span class=delete-child>
-                <mat-icon (click)="deleteChild(child.childId)" class="size-16 home-option-button-icon">delete_sweep</mat-icon>
-            </span>
-            <span class=describe-medicine-child>
-                <mat-icon (click)='addMedicinesToChild(child.childId)' class="size-16 home-option-button-icon" alt="Przypisz leki dla dziecka">description</mat-icon>
-            </span>
-            {{child.name}}        
+
+        <div class="col justify-content-end">
+
+          <div class="row">
+            <div class="col-auto email-icon">
+              <mat-icon>email</mat-icon>
+            </div>
+            <div class="col">
+              <h3>{{parent?.email}}</h3>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+
+      <div class="row items-container">
+        <div class="col-6 item" *ngFor="let child of children">
+          <app-child-item [child]="child"></app-child-item>
+        </div>
+      </div>
+
+      <div class="row">
         <button
-            class="child-add-button"
-            mat-raised-button
-            color="primary"
-            (click)="addChild()">
-            <mat-icon class="size-24 child-add-button-icon">person_add</mat-icon>
-              Dodaj dziecko
-          </button>
-    </div>
-    <div class=list-of-things>            
-        <div class=med-info *ngFor='let med of medicines'>
-            <span class=delete-med>
-                <mat-icon (click)="deleteMedicine(med.medicineId)" class="size-16 home-option-button-icon">delete_sweep</mat-icon>
-            </span>
-            {{med.name}}        
+          class="child-add-button"
+          mat-raised-button
+          color="primary"
+          (click)="addChild()">
+          <mat-icon class="size-24 child-add-button-icon">person_add</mat-icon>
+          Dodaj dziecko
+        </button>
+      </div>
+
+      <div class="row items-container">
+        <div class="col-6 item" *ngFor="let medicine of medicines">
+
         </div>
+      </div>
+
+      <div class="row">
         <button
-        class="child-add-button"
-        mat-raised-button
-        color="primary"
-        (click)="addMedicine()">
-        <mat-icon class="size-24 child-add-button-icon">playlist_add</mat-icon>
+          class="child-add-button"
+          mat-raised-button
+          color="primary"
+          (click)="addMedicine()">
+          <mat-icon class="size-24 child-add-button-icon">playlist_add</mat-icon>
           Dodaj produkt medyczny
-      </button>
-    </div> 
+        </button>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+

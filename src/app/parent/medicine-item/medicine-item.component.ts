@@ -1,14 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Child} from '../../models/child';
+import {Medicine} from '../../models/medicine';
 import {ParentService} from '../../services/parent.service';
 
 @Component({
-  selector: 'app-child-item',
-  templateUrl: './child-item.component.html',
-  styleUrls: ['./child-item.component.css']
+  selector: 'app-medicine-item',
+  templateUrl: './medicine-item.component.html',
+  styleUrls: ['./medicine-item.component.css']
 })
-export class ChildItemComponent implements OnInit {
-  @Input() child: Child;
+export class MedicineItemComponent implements OnInit {
+  @Input() medicine: Medicine;
   @Output() removed = new EventEmitter();
 
   constructor(
@@ -16,8 +16,12 @@ export class ChildItemComponent implements OnInit {
   ) {
   }
 
+  assign() {
+
+  }
+
   remove() {
-    this.parentService.removeChild(this.child.childId)
+    this.parentService.removeMedicine(this.medicine.medicineId)
       .then(value => {
         this.removed.emit();
       });

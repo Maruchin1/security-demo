@@ -1,0 +1,49 @@
+<mat-card class="rounded-card" [class.mat-elevation-z0]="true">
+
+
+  <mat-card-title>{{medicine.name}}</mat-card-title>
+
+  <mat-card-subtitle>{{medicine.unit}}</mat-card-subtitle>
+
+  <mat-card-content>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-auto d-flex align-items-center icon-col">
+          <mat-icon class="size-18">event</mat-icon>
+        </div>
+        <div class="col">
+          <p class="mat-body-2 data-text">Data ważności</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col data-col">
+          <h4>{{medicine.expireDate}}</h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-auto d-flex align-items-center icon-col">
+          <mat-icon class="size-18">data_usage</mat-icon>
+        </div>
+        <div class="col">
+          <p class="mat-body-2 data-text">Ilość leku</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col data-col">
+          <h4>{{medicine.currState}} / {{medicine.packageSize}}</h4>
+        </div>
+      </div>
+
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button (click)="assign()">PRZYDZIEL</button>
+    <button mat-button (click)="remove()">USUŃ</button>
+  </mat-card-actions>
+
+</mat-card>

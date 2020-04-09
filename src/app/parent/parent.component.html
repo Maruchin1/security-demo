@@ -35,7 +35,7 @@
 
       <div class="row items-container">
         <div class="col-6 item" *ngFor="let child of children">
-          <app-child-item [child]="child"></app-child-item>
+          <app-child-item [child]="child" (removed)="refreshData()"></app-child-item>
         </div>
       </div>
 
@@ -52,7 +52,7 @@
 
       <div class="row items-container">
         <div class="col-6 item" *ngFor="let medicine of medicines">
-
+          <app-medicine-item [medicine]="medicine" (removed)="refreshData()"></app-medicine-item>
         </div>
       </div>
 

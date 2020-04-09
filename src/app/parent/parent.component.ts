@@ -5,6 +5,7 @@ import {Medicine} from '../models/medicine';
 import {ParentService} from '../services/parent.service';
 import {AddChildFormComponent} from './add-child-form/add-child-form.component';
 import {MatDialog} from '@angular/material/dialog';
+import {AddMedicineFormComponent} from './add-medicine-form/add-medicine-form.component';
 
 @Component({
   selector: 'app-parent',
@@ -32,7 +33,10 @@ export class ParentComponent implements OnInit {
   }
 
   addMedicine() {
-    // toDO: przekierowanie do formularza dodawania leku
+    const dialogRef = this.dialog.open(AddMedicineFormComponent);
+    dialogRef.afterClosed().subscribe(
+      value => this.refreshData()
+    );
   }
 
   deleteMedicine(medicineId: number) {
@@ -46,16 +50,10 @@ export class ParentComponent implements OnInit {
   }
 
   addChild() {
-    const dialogRef = this.dialog.open(AddChildFormComponent, {
-      width: '250px'
-    });
-    dialogRef.afterClosed().subscribe(childName => {
-      this.parentService.addChild(childName).then(() => this.refreshData());
-    });
-  }
-
-  addMedicinesToChild(childId: number) {
-    // toDO: przekierowanie do widoku z przypisywaniem leków
+    const dialogRef = this.dialog.open(AddChildFormComponent);
+    dialogRef.afterClosed().subscribe(
+      value => this.refreshData()
+    );
   }
 
   deleteChild(childId: number) {

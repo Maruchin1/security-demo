@@ -11,7 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {SecurityMenuComponent} from './dialogs/security-menu/security-menu.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { ConfirmComponent } from './dialogs/confirm/confirm.component';
+import {ConfirmComponent} from './dialogs/confirm/confirm.component';
 
 @NgModule({
   declarations: [

@@ -53,6 +53,15 @@ export class ParentService {
     return request.toPromise()
   }
 
+  addChild(childName: string): Promise<any> {
+    return this.httpClient.post(
+      ApiEndpoints.CHILDRENS, 
+      { name: childName },
+      {headers: { 'Authorization': this.auth.getAuthToken(),
+                  'Content-Type': 'application/json' }}
+      ).toPromise();
+  }
+
   removeChild(childId: number) {
     console.log(this.auth.getAuthToken())
     const request = this.httpClient.delete(

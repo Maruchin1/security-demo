@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Dodawanie dziecka</h1>
+<div mat-dialog-content>
+  <p>Podaj imię</p>
+  <mat-form-field>
+    <mat-label>np. Barbara</mat-label>
+    <input matInput [(ngModel)]="childName">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button [mat-dialog-close]="childName" cdkFocusInitial>Dodaj</button>
+</div>

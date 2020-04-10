@@ -46,14 +46,16 @@ export class ParentComponent implements OnInit {
 
   searchMedicine() {
     const medicineName = this.searchMedicineControl.value;
-    this.parentService.searchMedicine(medicineName).subscribe(
-      value => {
-        const dialogRef = this.dialog.open(MedicineSearchResultComponent, {
-          width: '400px',
-          data: value
-        });
-      }
-    );
+    if (medicineName) {
+      this.parentService.searchMedicine(medicineName).subscribe(
+        value => {
+          const dialogRef = this.dialog.open(MedicineSearchResultComponent, {
+            width: '400px',
+            data: value
+          });
+        }
+      );
+    }
   }
 
   deleteMedicine(medicineId: number) {

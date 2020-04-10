@@ -14,13 +14,13 @@
           </h1>
         </div>
 
-        <div class="col justify-content-end">
+        <div class="col-auto justify-content-end">
 
           <div class="row">
             <div class="col-auto email-icon">
               <mat-icon>email</mat-icon>
             </div>
-            <div class="col">
+            <div class="col-auto">
               <h3>{{parent?.email}}</h3>
             </div>
           </div>
@@ -33,6 +33,12 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col">
+          <h1 class="mat-display-1 section-title">Dzieci</h1>
+        </div>
+      </div>
+
       <div class="row items-container">
         <div class="col-6 item" *ngFor="let child of children">
           <app-child-item [child]="child" (removed)="refreshData()"></app-child-item>
@@ -41,13 +47,36 @@
 
       <div class="row">
         <button
-          class="child-add-button"
+          class="add-button"
           mat-raised-button
           color="primary"
           (click)="addChild()">
           <mat-icon class="size-24 child-add-button-icon">person_add</mat-icon>
           Dodaj dziecko
         </button>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h1 class="mat-display-1 section-title">Produkty medyczne</h1>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <mat-form-field
+          class="col search-section"
+          appearance="outline">
+          <mat-label>Wyszukaj produkt medyczny</mat-label>
+          <input matInput [formControl]="searchMedicineControl">
+        </mat-form-field>
+        <div class="col-auto">
+          <button
+            mat-fab
+            color="primary"
+            (click)="searchMedicine()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
       </div>
 
       <div class="row items-container">
@@ -58,7 +87,7 @@
 
       <div class="row">
         <button
-          class="child-add-button"
+          class="add-button"
           mat-raised-button
           color="primary"
           (click)="addMedicine()">
@@ -66,6 +95,8 @@
           Dodaj produkt medyczny
         </button>
       </div>
+
+      <div style="height: 128px"></div>
 
     </div>
   </div>

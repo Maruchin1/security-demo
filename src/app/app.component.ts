@@ -29,7 +29,10 @@ export class AppComponent implements OnInit {
       title: 'Wylogowanie z aplikacji',
       message: 'Czy na pewno chcesz się wylogować z aplikacji?'
     };
-    const dialogRef = this.matDialog.open(ConfirmComponent, {data: confirmData});
+    const dialogRef = this.matDialog.open(ConfirmComponent, {
+      width: '400px',
+      data: confirmData
+    });
     dialogRef.beforeClosed().subscribe(
       value => this.handleLogoutConfirm(value)
     );

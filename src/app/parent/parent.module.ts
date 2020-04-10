@@ -14,6 +14,7 @@ import {ChildItemComponent} from './child-item/child-item.component';
 import {MatCardModule} from '@angular/material/card';
 import {MedicineItemComponent} from './medicine-item/medicine-item.component';
 import { AddMedicineFormComponent } from './add-medicine-form/add-medicine-form.component';
+import { MedicineSearchResultComponent } from './medicine-search-result/medicine-search-result.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AddMedicineFormComponent } from './add-medicine-form/add-medicine-form.
     AddChildFormComponent,
     ChildItemComponent,
     MedicineItemComponent,
-    AddMedicineFormComponent
+    AddMedicineFormComponent,
+    MedicineSearchResultComponent
   ],
   imports: [
     CommonModule,

@@ -3,14 +3,18 @@
 <mat-dialog-content>
   <div class="container">
 
-    <div class="row">
-      <mat-form-field
-        class="col"
-        appearance="outline">
-        <mat-label>Imię dziecka</mat-label>
-        <input matInput [formControl]="">
-      </mat-form-field>
-    </div>
+    <form [formGroup]="form">
+
+      <div class="row">
+        <mat-form-field
+          class="col"
+          appearance="outline">
+          <mat-label>Imię dziecka</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+      </div>
+
+    </form>
 
   </div>
 </mat-dialog-content>

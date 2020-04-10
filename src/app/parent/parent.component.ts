@@ -6,6 +6,8 @@ import {ParentService} from '../services/parent.service';
 import {AddChildFormComponent} from './add-child-form/add-child-form.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AddMedicineFormComponent} from './add-medicine-form/add-medicine-form.component';
+import {FormControl} from '@angular/forms';
+import {MedicineSearchResultComponent} from './medicine-search-result/medicine-search-result.component';
 
 @Component({
   selector: 'app-parent',
@@ -16,6 +18,7 @@ export class ParentComponent implements OnInit {
   parent: Parent;
   children: Child[] = [];
   medicines: Medicine[] = [];
+  searchMedicineControl = new FormControl('');
 
   constructor(private parentService: ParentService, private dialog: MatDialog) {
   }
@@ -33,9 +36,23 @@ export class ParentComponent implements OnInit {
   }
 
   addMedicine() {
-    const dialogRef = this.dialog.open(AddMedicineFormComponent);
+    const dialogRef = this.dialog.open(AddMedicineFormComponent, {
+      width: '400px'
+    });
     dialogRef.afterClosed().subscribe(
       value => this.refreshData()
+    );
+  }
+
+  searchMedicine() {
+    const medicineName = this.searchMedicineControl.value;
+    this.parentService.searchMedicine(medicineName).subscribe(
+      value => {
+        const dialogRef = this.dialog.open(MedicineSearchResultComponent, {
+          width: '400px',
+          data: value
+        });
+      }
     );
   }
 
@@ -50,7 +67,9 @@ export class ParentComponent implements OnInit {
   }
 
   addChild() {
-    const dialogRef = this.dialog.open(AddChildFormComponent);
+    const dialogRef = this.dialog.open(AddChildFormComponent, {
+      width: '400px'
+    });
     dialogRef.afterClosed().subscribe(
       value => this.refreshData()
     );

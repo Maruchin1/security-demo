@@ -16,68 +16,77 @@
 }
 
 .items-container {
-  padding: 16px 8px 16px;
+  padding: 0 8px 0;
 }
 
 .item {
   padding: 8px;
 }
 
-
-
-.parent-info{
-    border-radius: 25px;
-    background-color: blueviolet;
-    margin: 5% 20%;
-    padding: 5%;
-    font-family:  Roboto, "Helvetica Neue", sans-serif;
-    color: white;
+.section-title {
+  margin: 32px 0 16px;
+  text-align: center;
 }
 
-.parent-data{
-font-weight: 500;
-font-size: 18px;
+.search-section {
+  max-width: 350px;
 }
 
-.role{
+.parent-info {
+  border-radius: 25px;
+  background-color: blueviolet;
+  margin: 5% 20%;
+  padding: 5%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: white;
+}
+
+.parent-data {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.role {
 
 }
 
-.describe-medicine-child{
-    margin-right: 30px;
+.describe-medicine-child {
+  margin-right: 30px;
 }
 
-.list-of-things{
-    margin: 2% 20% 5% 20%;
+.list-of-things {
+  margin: 2% 20% 5% 20%;
 }
 
-.child-info{
- background-color: aliceblue;
- border-top: 1px dashed darkslategray;
- padding: 2% 10%;
- position: relative;
- color: darkslategray;
- font-size: 20px;
- font-family: 'Roboto, "Helvetica Neue", sans-serif';
+.child-info {
+  background-color: aliceblue;
+  border-top: 1px dashed darkslategray;
+  padding: 2% 10%;
+  position: relative;
+  color: darkslategray;
+  font-size: 20px;
+  font-family: 'Roboto, "Helvetica Neue", sans-serif';
 }
 
-.delete-child{
-    margin-right: 20px;
+.delete-child {
+  margin-right: 20px;
 }
 
-.child-add-button{
-    width: 100%;
+.add-button {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 32px;
 }
 
-.med-info{
-    background-color: aliceblue;
-    border-top: 1px dashed darkslategray;
-    padding: 2% 10%;
-    color: darkslategray;
-    font-size: 20px;
-    font-family: 'Roboto, "Helvetica Neue", sans-serif';
+.med-info {
+  background-color: aliceblue;
+  border-top: 1px dashed darkslategray;
+  padding: 2% 10%;
+  color: darkslategray;
+  font-size: 20px;
+  font-family: 'Roboto, "Helvetica Neue", sans-serif';
 }
 
-.delete-med{
-    margin-right: 30px;
+.delete-med {
+  margin-right: 30px;
 }

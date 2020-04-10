@@ -4,6 +4,8 @@ export class ApiEndpoints {
   static readonly GET_DATA_PARENT = ApiEndpoints.BASE_URL + '/parents/byAuthToken';
   static readonly CHILDREN = ApiEndpoints.BASE_URL + '/children';
   static readonly MEDICINES = ApiEndpoints.BASE_URL + '/medicines';
+  static readonly SAFE_SEARCH_MEDICINE = ApiEndpoints.BASE_URL + '/medicines/safeByName';
+  static readonly UNSAFE_SEARCH_MEDICINE = ApiEndpoints.BASE_URL + '/medicines/unsafeByName';
   static readonly REGISTER_PARENT = ApiEndpoints.BASE_URL + '/users/register-parent';
   static readonly LOGIN_PARENT = ApiEndpoints.BASE_URL + '/users/login-parent';
   static readonly LOGIN_CHILD = ApiEndpoints.BASE_URL + '/users/login-child';

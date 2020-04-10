@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class SecurityService {
-  // todo zaimplementować logikę zabezpieczeń
+  private readonly KEY_SQL_INJECTION_SECURED = 'key-sql-injection-secured';
 
   constructor() {
   }
@@ -14,7 +14,12 @@ export class SecurityService {
   }
 
   getSecureSqlInjection(): boolean {
-    return true;
+    const value = localStorage.getItem(this.KEY_SQL_INJECTION_SECURED);
+    if (value) {
+      return JSON.parse(value) as boolean;
+    } else {
+      return true;
+    }
   }
 
   getSecureCsrfToken(): boolean {
@@ -27,6 +32,8 @@ export class SecurityService {
 
   setSecureSqlInjection(secure: boolean) {
     console.log('secureSqlInjection: ' + secure);
+    const value = JSON.stringify(secure);
+    localStorage.setItem(this.KEY_SQL_INJECTION_SECURED, value);
   }
 
   setSecureCsrfToken(secure: boolean) {

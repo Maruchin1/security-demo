@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Wyniki wyszukiwania</h2>
+
+<mat-dialog-content>
+  <div class="container">
+
+    <h3 *ngIf="data.length === 0">Nie znaleziono pasujących produktów</h3>
+
+    <div class="row" *ngFor="let medicine of data; let i = index" [attr.data-index]="i">
+      <h3>{{i + 1}}. {{medicine.name}}</h3>
+    </div>
+
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-raised-button color="primary" mat-dialog-close>Zamknij</button>
+</mat-dialog-actions>

@@ -5,7 +5,7 @@
 
     <form>
       <div class="row" *ngFor='let children of data.childrens'>
-        <mat-checkbox (click)="checkChild(children.childId)">{{children.name}} </mat-checkbox>
+        <mat-checkbox id={{children.name}} (click)="checkChild(children.childId)">{{children.name}} </mat-checkbox>
       </div>
     </form>
 

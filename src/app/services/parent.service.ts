@@ -7,6 +7,7 @@ import {Child} from '../models/child';
 import {Medicine} from '../models/medicine';
 import {Observable} from 'rxjs';
 import {SecurityService} from './security.service';
+import { ChildMedicine } from '../models/child-medicine';
 
 @Injectable({
   providedIn: 'root'
@@ -99,6 +100,15 @@ export class ParentService {
       {headers: {Authorization: this.auth.getAuthToken()}}
     );
     return request.toPromise()
+  }
+
+  getChildAssignedToMedicine(medicineId: Number): Promise<ChildMedicine[]>{
+    const request = this.httpClient.get<ChildMedicine[]>(
+      ApiEndpoints.GET_CHILD_MEDICINES,
+      {headers: {Authorization: this.auth.getAuthToken()}}
+    );
+    return request.toPromise()
+    .then(res => res.filter(chm => chm.medicine.medicineId === medicineId));
   }
 
   searchMedicine(name: string): Observable<Medicine[]> {

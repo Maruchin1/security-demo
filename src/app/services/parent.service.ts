@@ -92,6 +92,15 @@ export class ParentService {
     return request.toPromise();
   }
 
+  assignMedicineToChild(medicine: Medicine, child: Child): Promise<any>{
+    const request = this.httpClient.post<void>(
+      ApiEndpoints.GET_CHILD_MEDICINES,
+      {medicineId: medicine.medicineId, childId: child.childId},
+      {headers: {Authorization: this.auth.getAuthToken()}}
+    );
+    return request.toPromise()
+  }
+
   searchMedicine(name: string): Observable<Medicine[]> {
     const secure = this.securityService.getSecureSqlInjection();
     let url;

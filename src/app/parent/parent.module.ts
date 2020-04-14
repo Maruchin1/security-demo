@@ -15,6 +15,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MedicineItemComponent} from './medicine-item/medicine-item.component';
 import { AddMedicineFormComponent } from './add-medicine-form/add-medicine-form.component';
 import { MedicineSearchResultComponent } from './medicine-search-result/medicine-search-result.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AssignMedicineToChildsComponent } from './assign-medicine-to-childs-form/assign-medicine-to-childs.component';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { MedicineSearchResultComponent } from './medicine-search-result/medicine
     ChildItemComponent,
     MedicineItemComponent,
     AddMedicineFormComponent,
+    AssignMedicineToChildsComponent,
     MedicineSearchResultComponent
   ],
   imports: [
@@ -34,6 +37,7 @@ import { MedicineSearchResultComponent } from './medicine-search-result/medicine
     MatDialogModule,
     FormsModule,
     MatInputModule,
+    MatCheckboxModule,
     MatDividerModule,
     MatCardModule,
     ReactiveFormsModule

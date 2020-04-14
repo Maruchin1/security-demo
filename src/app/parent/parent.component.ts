@@ -16,7 +16,7 @@ import {MedicineSearchResultComponent} from './medicine-search-result/medicine-s
 })
 export class ParentComponent implements OnInit {
   parent: Parent;
-  children: Child[] = [];
+  childrens: Child[] = [];
   medicines: Medicine[] = [];
   searchMedicineControl = new FormControl('');
 
@@ -31,7 +31,7 @@ export class ParentComponent implements OnInit {
   }
 
   refreshData() {
-    this.parentService.getParentChilds().then(ch => this.children = ch);
+    this.parentService.getParentChilds().then(ch => this.childrens = ch);
     this.parentService.getParentMedicines().then(m => this.medicines = m);
   }
 
@@ -79,8 +79,8 @@ export class ParentComponent implements OnInit {
 
   deleteChild(childId: number) {
     this.parentService.removeChild(childId).then(() => {
-      const i = this.children.findIndex(c => c.childId === childId);
-      this.children.splice(i, 1);
+      const i = this.childrens.findIndex(c => c.childId === childId);
+      this.childrens.splice(i, 1);
     }).catch(err => {
       alert('Nie można usunąć dziecka!');
     });

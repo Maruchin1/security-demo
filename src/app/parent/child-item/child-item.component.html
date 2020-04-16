@@ -20,6 +20,24 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-auto d-flex align-items-center icon-col">
+          <mat-icon class="size-18">dns</mat-icon>
+        </div>
+        <div class="col">
+          <p class="mat-body-2 data-text">Przypisane leki</p>
+        </div>
+      </div>
+
+      <div class="row" *ngFor='let med of medicines'>
+        <div class="col-auto d-flex align-items-center icon-col" (click)="removeAssignedMedicine(med.medicineId)">
+          <mat-icon class="size-18">delete</mat-icon>
+        </div>
+        <div class="col">
+          <p class="mat-body-2 data-text">{{med.medicines.name}}</p>
+        </div>
+      </div>
+
     </div>
   </mat-card-content>
 

@@ -14,6 +14,7 @@ export class MedicineItemComponent implements OnInit {
   @Input() medicine: Medicine;
   @Input() childrens: Child[];
   @Output() removed = new EventEmitter();
+  @Output() assigned = new EventEmitter();
 
   constructor(
     private parentService: ParentService,  private dialog: MatDialog
@@ -21,13 +22,17 @@ export class MedicineItemComponent implements OnInit {
   }
 
   assign() {
-    this.dialog.open(AssignMedicineToChildsComponent, {
+   const dialogRef = this.dialog.open(AssignMedicineToChildsComponent, {
       width: '400px',
       data: {
         medicine: this.medicine,
         childrens: this.childrens
       }
     });
+
+    dialogRef.afterClosed().subscribe(
+      value => this.assigned.emit()
+    );
     }
 
   remove() {

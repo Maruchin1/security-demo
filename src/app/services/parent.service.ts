@@ -102,13 +102,20 @@ export class ParentService {
     return request.toPromise()
   }
 
-  getChildAssignedToMedicine(medicineId: Number): Promise<ChildMedicine[]>{
+  removeAssignedMedicine(medChildId: number) {
+    const request = this.httpClient.delete(
+      ApiEndpoints.GET_CHILD_MEDICINES + '/' + medChildId,
+      {headers: {Authorization: this.auth.getAuthToken()}}
+    );
+    return request.toPromise();
+  }
+
+  getMedicinesAssignedToChild(childId: Number): Promise<ChildMedicine[]>{
     const request = this.httpClient.get<ChildMedicine[]>(
-      ApiEndpoints.GET_CHILD_MEDICINES,
+      ApiEndpoints.GET_CHILD_MEDICINES + '/' + childId,
       {headers: {Authorization: this.auth.getAuthToken()}}
     );
     return request.toPromise()
-    .then(res => res.filter(chm => chm.medicine.medicineId === medicineId));
   }
 
   searchMedicine(name: string): Observable<Medicine[]> {

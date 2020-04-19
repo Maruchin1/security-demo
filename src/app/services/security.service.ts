@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import { HttpClientXsrfModule } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,9 @@ export class SecurityService {
 
   setSecureCsrfToken(secure: boolean) {
     console.log('secureCsrfToken: ' + secure);
+    if(!secure){
+      HttpClientXsrfModule.disable()
+    }
+
   }
 }

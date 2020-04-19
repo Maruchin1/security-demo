@@ -12,12 +12,14 @@ import {SecurityMenuComponent} from './dialogs/security-menu/security-menu.compo
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ConfirmComponent} from './dialogs/confirm/confirm.component';
+import { LogoutComponent } from './logout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SecurityMenuComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddMedicineFormComponent} from './add-medicine-form/add-medicine-form.component';
 import {FormControl} from '@angular/forms';
 import {MedicineSearchResultComponent} from './medicine-search-result/medicine-search-result.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parent',
@@ -20,12 +21,15 @@ export class ParentComponent implements OnInit {
   medicines: Medicine[] = [];
   searchMedicineControl = new FormControl('');
 
-  constructor(private parentService: ParentService, private dialog: MatDialog) {
+  constructor(private parentService: ParentService, private dialog: MatDialog, private router: Router) {
   }
 
   ngOnInit(): void {
     this.parentService.getParentData().then(p => this.parent = p)
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.router.navigate(['/guest']) 
+      });
 
     this.refreshData();
   }

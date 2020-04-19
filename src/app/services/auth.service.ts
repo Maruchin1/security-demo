@@ -7,6 +7,7 @@ import {ApiEndpoints} from './ApiEndpoints';
 import {RegisterParentData} from '../models/register-parent-data';
 import {map, take} from 'rxjs/operators';
 import {LoginChildData} from '../models/login-child-data';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   private readonly currUserRole = new Subject<UserRole>();
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient, private cookieService: CookieService
   ) {
     this.currUserRole.next(UserRole.GUEST);
   }
@@ -88,6 +89,7 @@ export class AuthService {
 
   logoutCurrUser(): Observable<void> {
     localStorage.removeItem(this.KEY_AUTH_TOKEN);
+    this.cookieService.deleteAll();
     return this.refreshCurrUserRole();
   }
 
@@ -109,6 +111,7 @@ export class AuthService {
   private handleAuthToken(token: string) {
     console.log('authToken: ' + token);
     localStorage.setItem(this.KEY_AUTH_TOKEN, token);
+    this.cookieService.set("XSRF-TOKEN",token)
   }
 
   getAuthToken(): string {

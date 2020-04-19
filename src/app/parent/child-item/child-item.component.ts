@@ -28,7 +28,7 @@ export class ChildItemComponent implements OnInit {
   removeAssignedMedicine(chmedId: number){
     this.parentService.removeAssignedMedicine(chmedId)
     .then(() => {
-      let i = this.medicines.findIndex(m => m.childMedicineId == chmedId)
+      let i = this.medicines.findIndex(m => m.assignedMedicineId == chmedId)
       this.medicines.splice(i,1)
     })
   }

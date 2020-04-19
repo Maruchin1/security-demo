@@ -30,11 +30,11 @@
       </div>
 
       <div class="row" *ngFor='let med of medicines'>
-        <div class="col-auto d-flex align-items-center icon-col" (click)="removeAssignedMedicine(med.medicineId)">
+        <div class="col-auto d-flex align-items-center icon-col" (click)="removeAssignedMedicine(med.assignedMedicineId)">
           <mat-icon class="size-18">delete</mat-icon>
         </div>
         <div class="col">
-          <p class="mat-body-2 data-text">{{med.medicines.name}}</p>
+          <p class="mat-body-2 data-text">{{med.medicine.name}}</p>
         </div>
       </div>
 

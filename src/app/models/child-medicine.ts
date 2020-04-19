@@ -1,6 +1,6 @@
 import {Medicine} from './medicine';
 
 export class ChildMedicine {
-  childMedicineId: number;
+  assignedMedicineId: number;
   medicine: Medicine;
 }

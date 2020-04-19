@@ -76,7 +76,6 @@ export class ParentService {
   }
 
   addMedicine(medicine: Medicine): Observable<void> {
-    console.log('add medicine');
     const request = this.httpClient.post<void>(
       ApiEndpoints.MEDICINES,
       medicine,

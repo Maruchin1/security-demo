@@ -4,7 +4,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(helmet.frameguard());
+// app.use(helmet.frameguard());
 
 // Serve static files....
 app.use(express.static(__dirname + '/dist/security-demo'));

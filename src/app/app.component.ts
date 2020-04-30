@@ -43,13 +43,14 @@ export class AppComponent implements OnInit {
   }
 
   private subscribeCurrUserRole() {
+    this.authService.refreshCurrUserRole().subscribe();
     this.authService.getCurrUserRole().subscribe(
       value => this.setupApp(value)
     );
   }
 
   private setupApp(userRole: UserRole) {
-    let moduleRoute = '';
+    let moduleRoute = 'guest';
     if (userRole === UserRole.PARENT) {
       moduleRoute = 'parent';
     } else if (userRole === UserRole.CHILD) {

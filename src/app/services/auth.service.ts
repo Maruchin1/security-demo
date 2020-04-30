@@ -12,7 +12,7 @@ import {LoginChildData} from '../models/login-child-data';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly KEY_AUTH_TOKEN = 'key-auth-token';
+  private readonly JWT_TOKEN = 'JWT-TOKEN';
   private readonly currUserRole = new Subject<UserRole>();
 
   constructor(
@@ -22,17 +22,9 @@ export class AuthService {
   }
 
   refreshCurrUserRole(): Observable<void> {
-    const authToken = localStorage.getItem(this.KEY_AUTH_TOKEN);
-    if (!authToken) {
-      this.currUserRole.next(UserRole.GUEST);
-      return of();
-    }
-    const requestHeaders = new HttpHeaders({
-      Authorization: authToken
-    });
     const request = this.httpClient.get(
       ApiEndpoints.USER_ROLE,
-      {headers: requestHeaders, responseType: 'text'}
+      {responseType: 'text', withCredentials: true}
     );
     return request.pipe(
       take(1),
@@ -44,19 +36,10 @@ export class AuthService {
     return this.currUserRole.asObservable();
   }
 
-  getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem(this.KEY_AUTH_TOKEN);
-    if (token) {
-      return new HttpHeaders({
-        Authorization: token
-      });
-    }
-  }
-
   registerParent(data: RegisterParentData): Observable<void> {
     const request = this.httpClient.post(
       ApiEndpoints.REGISTER_PARENT, data,
-      {responseType: 'text'}
+      {responseType: 'text', withCredentials: true}
     );
     return request.pipe(
       take(1),
@@ -67,7 +50,7 @@ export class AuthService {
   loginParent(data: LoginParentData): Observable<void> {
     const request = this.httpClient.post(
       ApiEndpoints.LOGIN_PARENT, data,
-      {responseType: 'text'}
+      {responseType: 'text', withCredentials: true}
     );
     return request.pipe(
       take(1),
@@ -78,7 +61,7 @@ export class AuthService {
   loginChild(data: LoginChildData): Observable<void> {
     const request = this.httpClient.post(
       ApiEndpoints.LOGIN_CHILD, data,
-      {responseType: 'text'}
+      {responseType: 'text', withCredentials: true}
     );
     return request.pipe(
       take(1),
@@ -87,7 +70,6 @@ export class AuthService {
   }
 
   logoutCurrUser(): Observable<void> {
-    localStorage.removeItem(this.KEY_AUTH_TOKEN);
     return this.refreshCurrUserRole();
   }
 
@@ -108,10 +90,5 @@ export class AuthService {
 
   private handleAuthToken(token: string) {
     console.log('authToken: ' + token);
-    localStorage.setItem(this.KEY_AUTH_TOKEN, token);
-  }
-
-  getAuthToken(): string {
-    return localStorage.getItem(this.KEY_AUTH_TOKEN);
   }
 }

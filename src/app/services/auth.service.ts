@@ -2,17 +2,16 @@ import {Injectable} from '@angular/core';
 import {UserRole} from '../models/user-role';
 import {Observable, of, Subject} from 'rxjs';
 import {LoginParentData} from '../models/login-parent-data';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {ApiEndpoints} from './ApiEndpoints';
 import {RegisterParentData} from '../models/register-parent-data';
-import {map, take} from 'rxjs/operators';
+import {map, switchMap, take} from 'rxjs/operators';
 import {LoginChildData} from '../models/login-child-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly JWT_TOKEN = 'JWT-TOKEN';
   private readonly currUserRole = new Subject<UserRole>();
 
   constructor(
@@ -70,7 +69,13 @@ export class AuthService {
   }
 
   logoutCurrUser(): Observable<void> {
-    return this.refreshCurrUserRole();
+    return this.httpClient.post(
+      ApiEndpoints.LOGOUT, {},
+      {withCredentials: true}
+    ).pipe(
+      take(1),
+      switchMap(_ => this.refreshCurrUserRole())
+    );
   }
 
   private handleUserRole(roleString: string) {

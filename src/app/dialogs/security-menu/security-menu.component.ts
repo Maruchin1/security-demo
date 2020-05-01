@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SecurityService} from '../../services/security.service';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-security-menu',
@@ -27,6 +28,10 @@ export class SecurityMenuComponent implements OnInit {
   private loadSecureOptions() {
     this.secureXFrameOptions = this.securityService.getSecureXFrameOptions();
     this.secureSqlInjection = this.securityService.getSecureSqlInjection();
-    this.secureCsrfToken = this.securityService.getSecureCsrfToken();
+    this.securityService.getSecureCsrfToken()
+      .pipe(take(1))
+      .subscribe(value => {
+        this.secureCsrfToken = value;
+      });
   }
 }

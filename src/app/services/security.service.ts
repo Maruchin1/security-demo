@@ -1,4 +1,9 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ApiEndpoints} from './ApiEndpoints';
+import {AuthService} from './auth.service';
+import {take} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +11,10 @@ import {Injectable} from '@angular/core';
 export class SecurityService {
   private readonly KEY_SQL_INJECTION_SECURED = 'key-sql-injection-secured';
 
-  constructor() {
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {
   }
 
   getSecureXFrameOptions(): boolean {
@@ -22,8 +30,11 @@ export class SecurityService {
     }
   }
 
-  getSecureCsrfToken(): boolean {
-    return true;
+  getSecureCsrfToken(): Observable<boolean> {
+    return this.httpClient.get<boolean>(
+      ApiEndpoints.SWITCH_CSRF_TOKEN,
+      {withCredentials: true}
+    );
   }
 
   setSecureXFrameOptions(secure: boolean) {
@@ -38,5 +49,9 @@ export class SecurityService {
 
   setSecureCsrfToken(secure: boolean) {
     console.log('secureCsrfToken: ' + secure);
+    this.httpClient.post(
+      ApiEndpoints.SWITCH_CSRF_TOKEN + '/' + secure, {},
+      {withCredentials: true, headers: this.authService.getCsrfHeaders()}
+    ).pipe(take(1)).subscribe();
   }
 }

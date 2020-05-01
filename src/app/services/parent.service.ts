@@ -50,14 +50,14 @@ export class ParentService {
     return this.httpClient.post(
       ApiEndpoints.CHILDREN,
       {name: childName},
-      {withCredentials: true}
+      {withCredentials: true, headers: this.auth.getCsrfHeaders()}
     ).toPromise();
   }
 
   removeChild(childId: number) {
     const request = this.httpClient.delete(
       ApiEndpoints.CHILDREN + '/' + childId,
-      {withCredentials: true}
+      {withCredentials: true, headers: this.auth.getCsrfHeaders()}
     );
     return request.toPromise();
   }

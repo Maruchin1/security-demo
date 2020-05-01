@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserRole} from '../models/user-role';
 import {Observable, of, Subject} from 'rxjs';
 import {LoginParentData} from '../models/login-parent-data';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiEndpoints} from './ApiEndpoints';
 import {RegisterParentData} from '../models/register-parent-data';
 import {map, switchMap, take} from 'rxjs/operators';
@@ -12,6 +12,7 @@ import {LoginChildData} from '../models/login-child-data';
   providedIn: 'root'
 })
 export class AuthService {
+  private readonly KEY_CSRF_TOKEN = 'csrf-token';
   private readonly currUserRole = new Subject<UserRole>();
 
   constructor(
@@ -78,6 +79,13 @@ export class AuthService {
     );
   }
 
+  getCsrfHeaders(): HttpHeaders {
+    const token = localStorage.getItem(this.KEY_CSRF_TOKEN);
+    return new HttpHeaders({
+      'CSRF-TOKEN': token
+    });
+  }
+
   private handleUserRole(roleString: string) {
     console.log('userRole: ' + roleString);
     switch (roleString) {
@@ -94,6 +102,7 @@ export class AuthService {
   }
 
   private handleAuthToken(token: string) {
-    console.log('authToken: ' + token);
+    console.log('csrfToken: ' + token);
+    localStorage.setItem(this.KEY_CSRF_TOKEN, token);
   }
 }

@@ -17,8 +17,8 @@ export class SecurityMenuComponent implements OnInit {
   ) {
   }
 
-  openXFrameOptionsTest() {
-    window.location.href = 'https://fake-web-security.herokuapp.com/';
+  openFakeWebsite() {
+    window.open('https://fake-web-security.herokuapp.com/', '_blank');
   }
 
   ngOnInit() {

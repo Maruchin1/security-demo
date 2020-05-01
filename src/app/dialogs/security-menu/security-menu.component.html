@@ -11,17 +11,6 @@
 
     <div class="row">
       <div class="col option">
-        <button
-          mat-button
-          color="primary"
-          (click)="openXFrameOptionsTest()">
-          X-FRAME-OPTIONS TEST
-        </button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col option">
         <mat-slide-toggle
           color="primary"
           [checked]="secureSqlInjection"
@@ -45,5 +34,11 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class="actions">
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="openFakeWebsite()">
+    OTWÓRZ FAŁSZYWĄ STRONĘ
+  </button>
   <button mat-raised-button color="primary" mat-dialog-close>Zamknij opcje</button>
 </mat-dialog-actions>

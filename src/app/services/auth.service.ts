@@ -72,7 +72,7 @@ export class AuthService {
   logoutCurrUser(): Observable<void> {
     return this.httpClient.post(
       ApiEndpoints.LOGOUT, {},
-      {withCredentials: true}
+      {withCredentials: true, headers: this.getCsrfHeaders()}
     ).pipe(
       take(1),
       switchMap(_ => this.refreshCurrUserRole())

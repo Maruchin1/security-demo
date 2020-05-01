@@ -66,7 +66,7 @@ export class ParentService {
     const request = this.httpClient.post<void>(
       ApiEndpoints.MEDICINES,
       medicine,
-      {withCredentials: true}
+      {withCredentials: true, headers: this.auth.getCsrfHeaders()}
     );
     return request;
   }
@@ -74,7 +74,7 @@ export class ParentService {
   removeMedicine(medicineId: number) {
     const request = this.httpClient.delete(
       ApiEndpoints.MEDICINES + '/' + medicineId,
-      {withCredentials: true}
+      {withCredentials: true, headers: this.auth.getCsrfHeaders()}
     );
     return request.toPromise();
   }
@@ -83,7 +83,7 @@ export class ParentService {
     const request = this.httpClient.post<void>(
       ApiEndpoints.GET_CHILD_MEDICINES,
       {medicineId: medicine.medicineId, childId: child.childId},
-      {withCredentials: true}
+      {withCredentials: true, headers: this.auth.getCsrfHeaders()}
     );
     return request.toPromise();
   }
@@ -91,7 +91,7 @@ export class ParentService {
   removeAssignedMedicine(medChildId: number) {
     const request = this.httpClient.delete(
       ApiEndpoints.GET_CHILD_MEDICINES + '/' + medChildId,
-      {withCredentials: true}
+      {withCredentials: true, headers: this.auth.getCsrfHeaders()}
     );
     return request.toPromise();
   }

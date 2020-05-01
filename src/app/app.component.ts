@@ -43,10 +43,11 @@ export class AppComponent implements OnInit {
   }
 
   private subscribeCurrUserRole() {
-    this.authService.refreshCurrUserRole().subscribe();
+    // this.authService.refreshCurrUserRole().subscribe();
     this.authService.getCurrUserRole().subscribe(
       value => this.setupApp(value)
     );
+    this.setupApp(UserRole.GUEST);
   }
 
   private setupApp(userRole: UserRole) {

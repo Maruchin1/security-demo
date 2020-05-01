@@ -30,17 +30,18 @@ import {HttpXsrfInterceptor} from './HttpXsrfInterceptor';
     MatButtonModule,
     MatDialogModule,
     MatSlideToggleModule,
-    HttpClientXsrfModule.withOptions({
-      cookieName: 'XSRF-TOKEN',
-      headerName: 'X-CSRF-TOKEN'
-    }),
+    HttpClientXsrfModule
+    // HttpClientXsrfModule.withOptions({
+    //   cookieName: 'XSRF-TOKEN',
+    //   headerName: 'X-CSRF-TOKEN'
+    // }),
   ],
   entryComponents: [
     SecurityMenuComponent,
     ConfirmComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpXsrfInterceptor, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: HttpXsrfInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
